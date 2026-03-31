@@ -332,12 +332,12 @@ function SchedulingCalendar({
           Quer entender a melhor forma de escalar seu atendimento?
         </h2>
         <p className="mt-2 sm:mt-3 text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
-          Agende uma conversa rápida com um dos nossos consultores.
-          Vamos analisar sua operação e mostrar o caminho mais seguro
-          para estruturar seu WhatsApp com a API Oficial.
+          Agende uma demonstração estratégica com nosso consultor especializado.
+          Vamos analisar sua operação e mostrar como a IA pode automatizar
+          processos e aumentar suas conversões.
         </p>
         <p className="mt-3 text-xs text-muted-foreground/60">
-          Clique em um dia abaixo, escolha um horário e agende sua reunião agora (leva ~10s).
+          Clique em um dia abaixo, escolha um horário e agende sua demonstração agora (leva ~10s).
         </p>
       </div>
 
