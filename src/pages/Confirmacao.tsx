@@ -123,25 +123,9 @@ export default function Confirmacao() {
                 </h1>
 
                 <p className="mt-2 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-md">
-                  Enviamos o diagnóstico personalizado para o seu WhatsApp e email.
                   Agora, agende uma demonstração estratégica para ver como a IA pode
                   funcionar no seu negócio.
                 </p>
-
-                <div className="hidden sm:flex mt-4 sm:mt-6 flex-col sm:flex-row items-center gap-2 sm:gap-3 text-xs text-muted-foreground/70">
-                  {telefone && (
-                    <span className="flex items-center gap-1.5">
-                      <MessageSquare className="h-3.5 w-3.5" />
-                      WhatsApp confirmado
-                    </span>
-                  )}
-                  {email && (
-                    <span className="flex items-center gap-1.5">
-                      <Mail className="h-3.5 w-3.5" />
-                      {email}
-                    </span>
-                  )}
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -341,7 +325,7 @@ function SchedulingCalendar({
         </p>
         <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground/60">
           <CalendarDays className="h-3.5 w-3.5" />
-          <span>Evento adicionado ao Google Calendar</span>
+          Evento adicionado ao Google Calendar
         </div>
 
         <div className="mt-6 sm:mt-8 w-full max-w-sm rounded-xl bg-green-50 border border-green-200 p-4 sm:p-5">
@@ -349,9 +333,8 @@ function SchedulingCalendar({
             Confirme seu agendamento no WhatsApp
           </p>
           <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
-            Devido ao alto fluxo de solicitações, o envio do guia por email pode
-            levar até 15 minutos. Clique no botão abaixo e receba
-            instantaneamente no WhatsApp!
+            Clique no botão abaixo para confirmar sua demonstração diretamente
+            no WhatsApp e receber o link de acesso.
           </p>
           <a
             href={whatsappUrl}
@@ -360,7 +343,7 @@ function SchedulingCalendar({
             className="mt-4 flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm shadow-lg transition active:scale-[0.98]"
           >
             <MessageSquare className="h-4.5 w-4.5" />
-            Solicitar guia pelo WhatsApp
+            Confirmar no WhatsApp
           </a>
         </div>
       </div>

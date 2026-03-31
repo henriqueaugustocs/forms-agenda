@@ -115,7 +115,7 @@ export default async function handler(req, res) {
     const now = new Date();
 
     const windows = [
-      { startMinutes: 8 * 60 + 30, endMinutes: 11 * 60 },
+      { startMinutes: 9 * 60 + 30, endMinutes: 11 * 60 },
       { startMinutes: 13 * 60 + 30, endMinutes: 16 * 60 + 30 },
     ];
 
