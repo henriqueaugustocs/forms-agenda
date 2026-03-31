@@ -116,7 +116,7 @@ export default async function handler(req, res) {
 
     const windows = [
       { startMinutes: 9 * 60 + 30, endMinutes: 11 * 60 },
-      { startMinutes: 13 * 60 + 30, endMinutes: 16 * 60 + 30 },
+      { startMinutes: 14 * 60, endMinutes: 16 * 60 + 30 },
     ];
 
     for (const w of windows) {

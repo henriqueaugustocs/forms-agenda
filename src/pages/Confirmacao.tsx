@@ -79,13 +79,6 @@ export default function Confirmacao() {
   const navigate = useNavigate();
   const state = (location.state || {}) as Partial<LocationState>;
 
-  const [showSuccessBannerMobile, setShowSuccessBannerMobile] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setShowSuccessBannerMobile(false), 5000);
-    return () => clearTimeout(t);
-  }, []);
-
   const nome = state.nome ?? "";
   const email = state.email ?? "";
   const telefone = state.telefone ?? "";
@@ -112,25 +105,7 @@ export default function Confirmacao() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto max-w-2xl px-4 sm:px-6 pt-[calc(env(safe-area-inset-top)+2rem)] pb-5 sm:py-12 space-y-4 sm:space-y-8">
-        {/* ── Success message ── */}
-        <div className={`${showSuccessBannerMobile ? "block" : "hidden"} sm:block`}>
-          <Card className="border bg-card shadow-xl rounded-2xl animate-fade-in">
-            <CardContent className="p-4 sm:p-8">
-              <div className="flex flex-col items-center text-center">
-                <h1 className="text-base font-bold text-foreground sm:text-2xl leading-tight">
-                  {nome ? `${nome}, s` : "S"}ua análise está pronta!
-                </h1>
-
-                <p className="mt-2 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-md">
-                  Agora, agende uma demonstração estratégica para ver como a IA pode
-                  funcionar no seu negócio.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
+      <div className="container mx-auto max-w-2xl px-4 sm:px-6 pt-[calc(env(safe-area-inset-top)+2rem)] pb-5 sm:py-12">
         {/* ── Scheduling section ── */}
         <Card className="border bg-card shadow-xl rounded-2xl animate-fade-in">
           <CardContent className="p-5 sm:p-8">
