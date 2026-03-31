@@ -391,21 +391,29 @@ export default function DiagnosticoAgendamento() {
   };
 
   const handleGuideSubmit = async () => {
-    // Redirecionar DIRETO para agendamento sem solicitar email
-    // Email será coletado na página de confirmação se necessário
+    // Validar email antes de redirecionar
+    if (!isValidEmail(resultEmail)) {
+      setResultEmailError("Informe um email válido.");
+      return;
+    }
+    setResultEmailError("");
+
+    // Atualizar formData com email
+    setFormData((prev) => ({ ...prev, email: resultEmail }));
     
     // Fire event
-    fireEvent("RedirecionamentoAgendamento", userData(), { classificacao, score });
+    fireEvent("RedirecionamentoAgendamento", userData(), { classificacao, score, email: resultEmail });
 
-    // Send final webhook
+    // Send final webhook com email
     decisionsRef.current.acao = "redirecionado_agendamento";
-    await sendFinalWebhook();
+    decisionsRef.current.email_informado = true;
+    await sendFinalWebhook({ email: resultEmail });
 
     // Navigate to confirmation page
     navigate("/confirmacao", {
       state: {
         nome: formData.nome.trim(),
-        email: formData.email || "",
+        email: resultEmail,
         telefone: formData.telefone,
         empresa: formData.empresa,
         segmento: formData.segmento,
@@ -931,6 +939,25 @@ function ResultScreen({
                 pode economizar em tempo e aumentar em conversões.
               </p>
             </div>
+
+            {/* Campo de Email */}
+            <div className="relative">
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/40" />
+              <input
+                type="email"
+                placeholder="Seu melhor email"
+                value={resultEmail}
+                onChange={(e) => onEmailChange(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && onSubmitGuide()}
+                className="w-full rounded-xl border bg-background pl-10 pr-4 py-4 text-base text-foreground outline-none ring-1 ring-transparent focus:ring-primary/50 transition"
+              />
+            </div>
+            {resultEmailError && (
+              <p className="text-xs text-destructive flex items-center gap-1.5">
+                <AlertCircle className="h-3 w-3" />
+                {resultEmailError}
+              </p>
+            )}
 
             <Button
               size="lg"
