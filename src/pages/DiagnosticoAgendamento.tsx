@@ -439,8 +439,8 @@ export default function DiagnosticoAgendamento() {
       setNameError("Informe o nome da empresa.");
       return;
     }
-    if (step === 4 && formData.segmento.trim().length < 2) {
-      setNameError("Informe o segmento.");
+    if (step === 4 && !formData.segmento) {
+      setNameError("Selecione um segmento.");
       return;
     }
     setPhoneError("");
@@ -649,27 +649,38 @@ export default function DiagnosticoAgendamento() {
                 icon={<User className="h-5 w-5" />}
                 label="Etapa 4 de 9"
               />
-              <label className="block text-base sm:text-lg font-semibold text-foreground mt-5 sm:mt-6">
+              <h2 className="mt-5 sm:mt-6 text-base sm:text-lg font-semibold text-foreground leading-snug">
                 Qual o segmento do seu negócio?
-              </label>
-              <input
-                type="text"
-                autoFocus
-                placeholder="Ex: Barbearia, Clínica, Salão, etc."
-                value={formData.segmento}
-                onChange={(e) => {
-                  setFormData((prev) => ({ ...prev, segmento: e.target.value }));
-                  setNameError("");
-                }}
-                onKeyDown={(e) => e.key === "Enter" && goNext()}
-                className="mt-3 w-full rounded-xl border bg-background px-4 py-4 text-base text-foreground outline-none ring-1 ring-transparent focus:ring-primary/50 transition"
-              />
-              {nameError && (
-                <p className="mt-2 text-sm text-destructive flex items-center gap-1.5">
-                  <AlertCircle className="h-3.5 w-3.5" />
-                  {nameError}
-                </p>
-              )}
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Selecione a opção que mais se aproxima do seu nicho
+              </p>
+              <div className="mt-4 sm:mt-5 space-y-2.5">
+                {[
+                  { label: "💈 Barbearia, Salão de Beleza, Nail Designer", value: "Beleza e Estética" },
+                  { label: "🏥 Clínica, Médico, Consultório", value: "Saúde e Medicina" },
+                  { label: "🏋️ Academia, Personal, Studio de Pilates", value: "Fitness e Bem-estar" },
+                  { label: "🐾 Pet Shop, Veterinária, Banho e Tosa", value: "Pet Care" },
+                  { label: "📚 Outro segmento", value: "Outro" },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, segmento: opt.value }));
+                      setNameError("");
+                      setTimeout(() => goNext(), 300);
+                    }}
+                    className={`w-full text-left rounded-xl border px-4 py-4 text-sm font-medium transition active:scale-[0.98]
+                      ${
+                        formData.segmento === opt.value
+                          ? "border-primary bg-primary/5 text-foreground ring-1 ring-primary/30"
+                          : "border-border bg-background text-muted-foreground hover:border-primary/30 hover:bg-primary/[0.02]"
+                      }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
               <NavButtons onBack={goBack} onNext={goNext} canNext={canAdvance()} />
             </StepCard>
           )}
