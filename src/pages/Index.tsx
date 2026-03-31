@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <HeroSection />
       <PainSection />
       <PositioningSection />
@@ -81,7 +81,7 @@ const Section = ({
 function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      <div className="container mx-auto flex flex-col-reverse items-center gap-8 sm:gap-12 py-12 sm:py-20 lg:flex-row lg:py-32">
+      <div className="container mx-auto px-4 sm:px-6 flex flex-col-reverse items-center gap-8 sm:gap-12 py-12 sm:py-20 lg:flex-row lg:py-32">
         {/* Text */}
         <div className="max-w-xl text-center lg:text-left">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 mb-4">
@@ -137,10 +137,10 @@ function HeroSection() {
 /* ───── Hero Comparison ───── */
 function HeroComparison() {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-5 items-stretch">
-      {/* LEFT — Banned */}
-      <div className="relative pb-5 flex flex-col">
-        <div className="relative flex-1 rounded-2xl border border-red-200 bg-white shadow-xl overflow-hidden">
+    <div className="grid grid-cols-2 gap-4 sm:gap-6 items-start max-w-full">
+      {/* LEFT — Manual */}
+      <div className="relative pb-6 flex flex-col">
+        <div className="relative rounded-2xl border-2 border-red-200 bg-white shadow-lg overflow-hidden min-h-[280px] sm:min-h-[320px] flex flex-col">
           {/* Red tint */}
           <div className="absolute inset-0 bg-red-50/40 pointer-events-none z-[1]" />
 
@@ -150,7 +150,7 @@ function HeroComparison() {
           </div>
 
           {/* Body */}
-          <div className="relative z-[2] flex flex-col items-center text-center px-3 py-4 sm:py-6 space-y-2 sm:space-y-3">
+          <div className="relative z-[2] flex flex-col items-center justify-center text-center px-3 py-6 sm:py-8 space-y-3 sm:space-y-4 flex-1">
             <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-red-100">
               <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-red-500" />
             </div>
@@ -180,9 +180,9 @@ function HeroComparison() {
         </div>
       </div>
 
-      {/* RIGHT — API Oficial */}
-      <div className="relative pb-5 flex flex-col">
-        <div className="flex-1 rounded-2xl border border-primary/20 bg-white shadow-xl overflow-hidden">
+      {/* RIGHT — Com IA */}
+      <div className="relative pb-6 flex flex-col">
+        <div className="rounded-2xl border-2 border-primary/30 bg-white shadow-lg overflow-hidden min-h-[280px] sm:min-h-[320px] flex flex-col">
           {/* Header */}
           <div className="bg-primary/95 px-3 py-2 sm:py-2.5 flex items-center justify-between">
             <span className="text-[10px] sm:text-xs font-bold text-white">IA Agendamento</span>
@@ -623,71 +623,73 @@ function ObjectionFilterSection() {
 function FinalCTASection() {
   return (
     <Section className="bg-gradient-to-b from-primary/5 to-background">
-      <div className="container mx-auto max-w-3xl py-12 sm:py-20 lg:py-32 text-center">
+      <div className="container mx-auto max-w-3xl px-4 sm:px-6 py-12 sm:py-20 lg:py-28 text-center">
         <div className="mb-8 sm:mb-10">
           <p className="text-sm font-semibold text-primary mb-3">ÚLTIMA CHANCE</p>
-          <h2 className="text-2xl font-bold text-foreground sm:text-4xl lg:text-5xl leading-tight">
-            Enquanto você lê isso, seus<br />concorrentes estão vendendo 24/7
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl leading-tight px-4">
+            Enquanto você lê isso, seus concorrentes estão vendendo 24/7
           </h2>
         </div>
 
-        <div className="max-w-2xl mx-auto mb-8 sm:mb-10">
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+        <div className="max-w-2xl mx-auto mb-8 sm:mb-10 px-4">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Cada minuto que você adia ter um <span className="font-bold text-foreground">funcionário de IA</span>,
             é um cliente que você perde para quem já automatizou o atendimento.
           </p>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
+          <p className="mt-4 text-sm sm:text-base text-muted-foreground">
             <span className="font-bold text-foreground">A pergunta não é "se" você vai automatizar.</span>
             {" "}A pergunta é: você vai fazer isso antes ou depois dos seus concorrentes?
           </p>
         </div>
 
-        <Card className="border-2 border-primary/20 bg-card shadow-xl max-w-xl mx-auto mb-8">
-          <CardContent className="p-6 sm:p-8">
-            <p className="text-sm font-semibold text-primary mb-3">O QUE VOCÊ VAI DESCOBRIR:</p>
-            <ul className="space-y-3 text-left">
+        <Card className="border-2 border-primary/20 bg-card shadow-lg max-w-xl mx-auto mb-8 mx-4">
+          <CardContent className="p-5 sm:p-6">
+            <p className="text-xs sm:text-sm font-semibold text-primary mb-3">O QUE VOCÊ VAI DESCOBRIR:</p>
+            <ul className="space-y-2.5 sm:space-y-3 text-left">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
-                <span className="text-sm text-foreground">Quantos clientes você está perdendo por demora no atendimento</span>
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+                <span className="text-xs sm:text-sm text-foreground">Quantos clientes você está perdendo por demora no atendimento</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
-                <span className="text-sm text-foreground">Como a IA pode funcionar especificamente no seu negócio</span>
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+                <span className="text-xs sm:text-sm text-foreground">Como a IA pode funcionar especificamente no seu negócio</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
-                <span className="text-sm text-foreground">Quanto você pode economizar substituindo atendimento manual por IA</span>
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+                <span className="text-xs sm:text-sm text-foreground">Quanto você pode economizar substituindo atendimento manual por IA</span>
               </li>
             </ul>
           </CardContent>
         </Card>
 
-        <Link to="/diagnostico-agendamento">
-          <Button
-            size="lg"
-            className="h-16 sm:h-20 px-10 sm:px-12 text-lg sm:text-xl font-bold rounded-xl shadow-2xl transition active:scale-[0.98] hover:scale-[1.02] bg-gradient-to-r from-primary to-primary/80"
-          >
-            Contratar Meu Funcionário de IA Agora
-            <ArrowRight className="ml-2 h-6 w-6 shrink-0" />
-          </Button>
-        </Link>
+        <div className="px-4">
+          <Link to="/diagnostico-agendamento">
+            <Button
+              size="lg"
+              className="w-full max-w-md h-14 sm:h-16 px-6 sm:px-8 text-base sm:text-lg font-bold rounded-xl shadow-xl transition active:scale-[0.98] hover:scale-[1.02]"
+            >
+              Contratar Meu Funcionário de IA Agora
+              <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+            </Button>
+          </Link>
+        </div>
 
-        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-muted-foreground">
+        <div className="mt-5 sm:mt-6 flex flex-col items-center gap-2 text-xs sm:text-sm text-muted-foreground px-4">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-primary" />
+            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
             <span>Análise 100% gratuita</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-primary" />
+            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
             <span>Leva apenas 3 minutos</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-primary" />
+            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
             <span>Demonstração personalizada ao final</span>
           </div>
         </div>
 
-        <p className="mt-8 text-xs text-muted-foreground/60">
+        <p className="mt-6 sm:mt-8 text-xs text-muted-foreground/60 px-4">
           Mais de 150 negócios já automatizaram o atendimento. Não fique para trás.
         </p>
       </div>
