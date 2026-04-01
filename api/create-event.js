@@ -179,8 +179,6 @@ export default async function handler(req, res) {
       attendees: [
         {
           email: email,
-          displayName: nome,
-          responseStatus: "needsAction",
         },
       ],
       conferenceData: {
@@ -191,13 +189,16 @@ export default async function handler(req, res) {
           },
         },
       },
+      guestsCanModify: false,
+      guestsCanInviteOthers: false,
+      guestsCanSeeOtherGuests: false,
     };
 
     const resp = await calendar.events.insert({
       calendarId,
       requestBody: event,
       conferenceDataVersion: 1,
-      sendUpdates: "none",
+      sendUpdates: "all",
     });
 
     const webhookUrls = getWebhookUrls();

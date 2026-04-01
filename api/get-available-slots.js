@@ -113,6 +113,9 @@ export default async function handler(req, res) {
 
     const slots = [];
     const now = new Date();
+    
+    // Add 15 minutes buffer to current time to avoid showing slots that are about to start
+    const nowWithBuffer = new Date(now.getTime() + 15 * 60 * 1000);
 
     const windows = [
       { startMinutes: 9 * 60 + 30, endMinutes: 11 * 60 },
@@ -130,7 +133,8 @@ export default async function handler(req, res) {
         const end = new Date(start);
         end.setMinutes(end.getMinutes() + 30);
 
-        if (start <= now) continue;
+        // Skip slots that have already started or are about to start (15min buffer)
+        if (start <= nowWithBuffer) continue;
 
         const isBusy = busy.some((b) => overlaps(start, end, b.start, b.end));
         if (isBusy) continue;
