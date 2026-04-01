@@ -176,29 +176,12 @@ export default async function handler(req, res) {
         dateTime: endDateTime,
         timeZone: "America/Sao_Paulo",
       },
-      attendees: [
-        {
-          email: email,
-        },
-      ],
-      conferenceData: {
-        createRequest: {
-          requestId: `meet-${Date.now()}-${Math.random().toString(36).substring(7)}`,
-          conferenceSolutionKey: {
-            type: "hangoutsMeet",
-          },
-        },
-      },
-      guestsCanModify: false,
-      guestsCanInviteOthers: false,
-      guestsCanSeeOtherGuests: false,
     };
 
     const resp = await calendar.events.insert({
       calendarId,
       requestBody: event,
-      conferenceDataVersion: 1,
-      sendUpdates: "all",
+      sendUpdates: "none",
     });
 
     const webhookUrls = getWebhookUrls();

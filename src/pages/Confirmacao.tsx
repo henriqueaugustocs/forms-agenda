@@ -65,7 +65,7 @@ function isFutureDate(year: number, month: number, day: number): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const date = new Date(year, month, day);
-  return date > today;
+  return date >= today;
 }
 
 function formatDateBR(year: number, month: number, day: number): string {
