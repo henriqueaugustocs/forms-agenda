@@ -114,6 +114,12 @@ export default async function handler(req, res) {
       time,
       classificacao,
       score,
+      trabalha_com_agendamento,
+      quem_atende,
+      canal_principal,
+      volume_diario,
+      tamanho_empresa,
+      investimento,
     } = req.body ?? {};
 
     const dateISO = parseDate(date);
@@ -145,6 +151,16 @@ export default async function handler(req, res) {
         `Telefone: ${telefone}`,
         empresa ? `Empresa: ${empresa}` : null,
         segmento ? `Segmento: ${segmento}` : null,
+        ``,
+        `=== RESPOSTAS DO FORMULÁRIO ===`,
+        trabalha_com_agendamento ? `Trabalha com agendamento: ${trabalha_com_agendamento}` : null,
+        quem_atende ? `Quem atende: ${quem_atende}` : null,
+        canal_principal ? `Canal principal: ${canal_principal}` : null,
+        volume_diario ? `Volume diário: ${volume_diario}` : null,
+        tamanho_empresa ? `Tamanho da empresa: ${tamanho_empresa}` : null,
+        investimento ? `Investimento: ${investimento}` : null,
+        ``,
+        `=== QUALIFICAÇÃO ===`,
         classificacao ? `Classificação: ${classificacao}` : null,
         typeof score === "number" ? `Score: ${score}` : null,
         ``,
@@ -160,13 +176,27 @@ export default async function handler(req, res) {
         dateTime: endDateTime,
         timeZone: "America/Sao_Paulo",
       },
+      attendees: [
+        {
+          email: email,
+          displayName: nome,
+          responseStatus: "needsAction",
+        },
+      ],
+      conferenceData: {
+        createRequest: {
+          requestId: `meet-${Date.now()}-${Math.random().toString(36).substring(7)}`,
+          conferenceSolutionKey: {
+            type: "hangoutsMeet",
+          },
+        },
+      },
     };
 
     const resp = await calendar.events.insert({
       calendarId,
       requestBody: event,
-      // Service accounts often cannot send email invites/updates.
-      // We still add attendees to the event, but do not trigger email notifications.
+      conferenceDataVersion: 1,
       sendUpdates: "none",
     });
 

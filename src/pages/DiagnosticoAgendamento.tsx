@@ -419,6 +419,12 @@ export default function DiagnosticoAgendamento() {
         segmento: formData.segmento,
         classificacao,
         score,
+        trabalha_com_agendamento: formData.trabalha_com_agendamento,
+        quem_atende: formData.quem_atende,
+        canal_principal: formData.canal_principal,
+        volume_diario: formData.volume_diario,
+        tamanho_empresa: formData.tamanho_empresa,
+        investimento: formData.investimento,
       },
     });
   };

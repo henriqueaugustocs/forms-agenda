@@ -27,6 +27,12 @@ interface LocationState {
   segmento: string;
   classificacao: string;
   score: number;
+  trabalha_com_agendamento: string;
+  quem_atende: string;
+  canal_principal: string;
+  volume_diario: string;
+  tamanho_empresa: string;
+  investimento: string;
 }
 
 const WEEKDAY_NAMES = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
@@ -86,6 +92,12 @@ export default function Confirmacao() {
   const segmento = state.segmento ?? "";
   const classificacao = state.classificacao ?? "";
   const score = state.score ?? 0;
+  const trabalha_com_agendamento = state.trabalha_com_agendamento ?? "";
+  const quem_atende = state.quem_atende ?? "";
+  const canal_principal = state.canal_principal ?? "";
+  const volume_diario = state.volume_diario ?? "";
+  const tamanho_empresa = state.tamanho_empresa ?? "";
+  const investimento = state.investimento ?? "";
 
   // If no state, redirect back
   if (!nome && !telefone) {
@@ -117,6 +129,12 @@ export default function Confirmacao() {
               segmento={segmento}
               classificacao={classificacao}
               score={score}
+              trabalha_com_agendamento={trabalha_com_agendamento}
+              quem_atende={quem_atende}
+              canal_principal={canal_principal}
+              volume_diario={volume_diario}
+              tamanho_empresa={tamanho_empresa}
+              investimento={investimento}
             />
           </CardContent>
         </Card>
@@ -137,6 +155,12 @@ function SchedulingCalendar({
   segmento,
   classificacao,
   score,
+  trabalha_com_agendamento,
+  quem_atende,
+  canal_principal,
+  volume_diario,
+  tamanho_empresa,
+  investimento,
 }: {
   nome: string;
   email: string;
@@ -145,6 +169,12 @@ function SchedulingCalendar({
   segmento: string;
   classificacao: string;
   score: number;
+  trabalha_com_agendamento: string;
+  quem_atende: string;
+  canal_principal: string;
+  volume_diario: string;
+  tamanho_empresa: string;
+  investimento: string;
 }) {
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -250,6 +280,12 @@ function SchedulingCalendar({
           time: selectedTime,
           classificacao,
           score,
+          trabalha_com_agendamento,
+          quem_atende,
+          canal_principal,
+          volume_diario,
+          tamanho_empresa,
+          investimento,
         }),
       });
 
